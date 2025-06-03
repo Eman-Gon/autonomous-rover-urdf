@@ -199,9 +199,9 @@ ros2 run robot_state_publisher robot_state_publisher --urdf urdf/rover.urdf
 
 ## Contributing
 
-This project was developed by **Emmanuel Gonzalez** as part of a senior project at Cal Poly, San Luis Obispo. For questions or contributions, please open an issue or pull request.
+This project was developed by **Emanuel Gonzalez** as part of a senior project at Cal Poly, San Luis Obispo. For questions or contributions, please open an issue or pull request.
 
 ## Author
 
-- **Emmanuel Gonzalez** - *Project Developer* - [Eman-Gon](https://github.com/Eman-Gon)
+- **Emanuel Gonzalez** - *Project Developer* - [Eman-Gon](https://github.com/Eman-Gon)
 
