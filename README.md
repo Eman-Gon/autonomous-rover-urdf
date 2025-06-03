@@ -8,29 +8,37 @@ URDF model of an autonomous delivery rover built using GoBilda hardware for a se
 autonomous-rover-urdf/
 ├── urdf/
 │   └── rover.urdf              # Main robot description file
-├── meshes/                     # STL visual models
+├── meshes/                     # STL visual models (download from Google Drive)
 │   ├── Base.stl
-│   ├── battery.stl
+│   ├── back_left_wheel.stl
+│   ├── back_right_wheel.stl
+│   ├── front_left_wheel.stl
+│   ├── front_right_wheel.stl
+│   ├── lidar.stl
 │   ├── camera.stl
-│   ├── motherboard.stl
-│   └── [Large files - see download section below]
+│   ├── battery.stl
+│   └── motherboard.stl
 ├── launch/                     # Launch files (optional)
 └── README.md
 ```
 
-## Large Mesh Files (Hosted on Google Drive)
+## Mesh Files (Hosted on Google Drive)
 
-Due to GitHub's file size limits, the following large STL files are hosted on Google Drive:
+Due to GitHub's file size limits, ALL STL mesh files are hosted on Google Drive:
 
-**Required Downloads:**
-- `lidar.stl`
-- `back_left_wheel.stl` 
-- `front_right_wheel.stl`
-- `front_left_wheel.stl`
-- `back_right_wheel.stl`
+**Required Downloads (All 9 Files):**
+- `Base.stl` (28.5 MB)
+- `back_left_wheel.stl` (103.4 MB)
+- `back_right_wheel.stl` (95.3 MB)
+- `front_left_wheel.stl` (95.3 MB)
+- `front_right_wheel.stl` (103.4 MB)
+- `lidar.stl` (154.2 MB)
+- `camera.stl` (2.5 MB)
+- `battery.stl` (343 KB)
+- `motherboard.stl` (15.3 MB)
 
 **Download Link:**  
-[Download Missing STL Files](https://drive.google.com/drive/u/1/folders/1DeFgrq8-kZised_OcWbh--EWJf4TB6_f)
+📁 [Download All STL Files](https://drive.google.com/drive/u/1/folders/1DeFgrq8-kZised_OcWbh--EWJf4TB6_f)
 
 ## Setup Instructions
 
@@ -55,14 +63,15 @@ sudo apt install ros-<your-ros-distro>-urdf-tutorial ros-<your-ros-distro>-rviz2
    ```
 
 2. **Download and place mesh files:**
-   - Download all STL files from the [Google Drive link](https://drive.google.com/drive/u/1/folders/1DeFgrq8-kZised_OcWbh--EWJf4TB6_f)
-   - Place them in the `meshes/` directory
+   - Download ALL 9 STL files from the [Google Drive link](https://drive.google.com/drive/u/1/folders/1DeFgrq8-kZised_OcWbh--EWJf4TB6_f)
+   - Create a `meshes/` directory in your project folder
+   - Place all downloaded STL files in the `meshes/` directory
    - Verify you have all 9 STL files:
      ```bash
      ls meshes/
-     # Should show: Base.stl, battery.stl, camera.stl, motherboard.stl, 
-     # lidar.stl, back_left_wheel.stl, front_right_wheel.stl, 
-     # front_left_wheel.stl, back_right_wheel.stl
+     # Should show: Base.stl, back_left_wheel.stl, back_right_wheel.stl,
+     # front_left_wheel.stl, front_right_wheel.stl, lidar.stl, 
+     # camera.stl, battery.stl, motherboard.stl
      ```
 
 3. **Set up ROS workspace (if needed):**
@@ -136,7 +145,7 @@ ros2 launch urdf_tutorial display.launch.py model:=urdf/rover.urdf
 ```
 Error: Could not find file [meshes/lidar.stl]
 ```
-**Solution:** Download all files from Google Drive and place in `meshes/` folder.
+**Solution:** Download ALL 9 STL files from Google Drive and place in `meshes/` folder. None of the mesh files are included in the GitHub repository.
 
 **2. RViz2 shows empty or broken model:**
 - Verify all 9 STL files are present in `meshes/`
@@ -151,7 +160,7 @@ xhost +local:docker  # Allow Docker to access display
 **4. ROS 2 package not found:**
 ```bash
 # Make sure urdf_tutorial is installed
-sudo apt install ros-<distro>-urdf-tutorial
+sudo apt install ros-<distro>-urdf_tutorial
 ```
 
 ### Verification Commands
@@ -204,4 +213,3 @@ This project was developed by **Emanuel Gonzalez** as part of a senior project a
 ## Author
 
 - **Emanuel Gonzalez** - *Project Developer* - [Eman-Gon](https://github.com/Eman-Gon)
-
