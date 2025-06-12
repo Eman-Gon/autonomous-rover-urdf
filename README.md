@@ -210,6 +210,74 @@ ros2 run robot_state_publisher robot_state_publisher --urdf urdf/rover.urdf
 
 This project was developed by **Emanuel Gonzalez** as part of a senior project at Cal Poly, San Luis Obispo. For questions or contributions, please open an issue or pull request.
 
+Troubleshooting
+Common Issues and Solutions
+1. Package Not Found Error
+Package 'urdf_tutorial' not found
+Solution: Install the missing package in Docker:
+bashapt update
+apt install ros-humble-urdf-tutorial -y
+2. GUI/Display Issues (macOS with Docker)
+qt.qpa.xcb: could not connect to display host.docker.internal:0
+Solution: Use alternative commands without GUI:
+bash# Start robot state publisher (this works without GUI)
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat rover.urdf)" &
+
+# Verify the rover is loaded correctly
+ros2 topic list
+Expected output should include:
+
+/robot_description
+/tf and /tf_static
+All 9 rover components logged successfully
+
+3. macOS X11 Display Setup
+For GUI support on macOS:
+bash# Install XQuartz (if not already installed)
+brew install --cask xquartz
+
+# Open XQuartz and enable network connections:
+# XQuartz → Preferences → Security → "Allow connections from network clients"
+
+# Allow Docker access
+xhost +localhost
+
+# Run Docker with X11 forwarding
+docker run -it --rm \
+  --env="DISPLAY=host.docker.internal:0" \
+  --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+  --volume="$(pwd):/workspace" \
+  osrf/ros:humble-desktop-full
+4. Verifying Success Without GUI
+Even if RViz2 doesn't open, you can confirm the rover URDF is working:
+bash# Check robot state publisher output - should show all 9 components:
+# base_link, front_left_wheel, front_right_wheel
+# back_left_wheel, back_right_wheel  
+# lidar, camera, battery, motherboard
+
+# Verify mesh file references
+grep -n "mesh" rover.urdf
+
+# Check active ROS topics
+ros2 topic list
+5. Alternative: Local ROS Installation
+If Docker GUI issues persist, consider installing ROS 2 directly:
+
+Ubuntu/Linux: Follow ROS 2 Humble installation guide
+macOS: Use robostack for conda-based ROS installation
+
+Success Indicators
+
+Robot state publisher logs all 9 rover components
+No "file not found" errors for STL meshes
+/robot_description topic is active
+RViz2 opens (if GUI working) showing complete rover model
+
+Hardware Requirements
+
+Minimum 8GB RAM recommended for Docker + ROS + RViz
+GPU acceleration helpful for 3D visualization
+
 ## Author
 
 - **Emanuel Gonzalez** - *Project Developer* - [Eman-Gon](https://github.com/Eman-Gon)
