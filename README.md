@@ -278,6 +278,156 @@ Hardware Requirements
 Minimum 8GB RAM recommended for Docker + ROS + RViz
 GPU acceleration helpful for 3D visualization
 
+
+Installation Methods
+Method 1: macOS with Conda (Recommended)
+This method provides native macOS performance with working GUI - no Docker headaches!
+Step 1: Install Miniforge
+bash# Download and install Miniforge
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh"
+bash Miniforge3-MacOSX-$(uname -m).sh
+
+# Accept license, use default location, say yes to initialize
+# Restart terminal or run:
+source ~/.zshrc
+Step 2: Create ROS Environment
+bash# Create new conda environment for ROS
+conda create -n ros_env
+conda activate ros_env
+
+# Add robostack channels
+conda config --env --add channels conda-forge
+conda config --env --add channels robostack-staging
+conda config --env --add channels robostack
+conda config --env --remove channels defaults
+Step 3: Install ROS 2 Humble
+bash# Install ROS 2 Desktop (includes RViz2) - takes 5-10 minutes
+conda install ros-humble-desktop ros-humble-robot-state-publisher
+Step 4: Setup Project
+bash# Clone repository
+git clone https://github.com/Eman-Gon/autonomous-rover-urdf.git
+cd autonomous-rover-urdf
+
+# Create meshes directory
+mkdir meshes
+
+# Download STL files from Google Drive and place in meshes/ folder
+# Or copy from existing location:
+# cp /path/to/existing/meshes/*.stl meshes/
+
+# Verify all 9 files are present
+ls meshes/
+Step 5: Launch Rover Visualization
+bash# Every time you want to use ROS, activate environment first:
+conda activate ros_env
+
+# Start robot state publisher
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat rover.urdf)" &
+
+# Launch RViz2
+ros2 run rviz2 rviz2
+Step 6: Configure RViz2
+
+Set Fixed Frame: Change from "map" to base_link
+Add Robot Model: Click "Add" → "RobotModel" → "OK"
+Add TF Display (optional): Click "Add" → "TF" → "OK"
+Zoom in: Your rover will be very small due to real-world scaling
+
+Method 2: Docker (Linux/Advanced Users)
+Prerequisites
+
+Docker installed
+X11 forwarding setup (Linux) or XQuartz (macOS)
+
+Linux Setup
+bash# Enable GUI access
+xhost +local:docker
+
+# Run container
+docker run -it --rm \
+  --env="DISPLAY=$DISPLAY" \
+  --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+  --volume="$(pwd):/workspace" \
+  osrf/ros:humble-desktop-full
+macOS Setup
+bash# Install and configure XQuartz
+brew install --cask xquartz
+# Open XQuartz → Preferences → Security → "Allow connections from network clients"
+xhost +localhost
+
+# Run container
+docker run -it --rm \
+  --env="DISPLAY=host.docker.internal:0" \
+  --volume="$(pwd):/workspace" \
+  osrf/ros:humble-desktop-full
+Inside Container
+bashcd /workspace
+apt update && apt install ros-humble-urdf-tutorial -y
+source /opt/ros/humble/setup.bash
+ros2 launch urdf_tutorial display.launch.py model:=rover.urdf
+Troubleshooting
+Common Issues
+1. "Package 'urdf_tutorial' not found"
+Solution: Install missing packages
+bash# In conda environment:
+conda install ros-humble-robot-state-publisher
+
+# In Docker:
+apt update && apt install ros-humble-urdf-tutorial -y
+2. Robot Not Visible in RViz2
+Symptoms: RViz2 opens but no robot visible, "No tf data" warnings
+Solutions:
+
+Check Fixed Frame: Must be set to base_link
+Add RobotModel display: Click Add → RobotModel
+Zoom in significantly: Robot is scaled to real-world size (very small)
+Check robot_state_publisher:
+bashros2 topic list
+# Should show: /robot_description, /tf, /tf_static
+
+
+3. Parameter Parsing Errors
+Error: Failed to parse global arguments or RCLInvalidROSArgsError
+Solution: Use simpler parameter format
+bash# Instead of complex parameter passing, use:
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat rover.urdf)" &
+4. Mesh Loading Issues (Spinning/Loading Symbol)
+Cause: RViz2 can't find STL files
+Solutions:
+
+Verify all 9 STL files are in meshes/ directory
+Check file permissions: chmod 644 meshes/*.stl
+Use absolute paths in URDF if needed
+
+5. macOS Docker GUI Issues
+Error: qt.qpa.xcb: could not connect to display
+Solution: Use conda installation method instead of Docker (recommended for macOS)
+Verification Commands
+bash# Check ROS environment
+conda activate ros_env
+ros2 --version
+
+# Verify URDF syntax
+ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="$(cat rover.urdf)" &
+
+# Check active topics
+ros2 topic list
+# Expected: /robot_description, /tf, /tf_static, /joint_states
+
+# Check mesh files
+ls meshes/
+# Should show all 9 .stl files
+
+# Test RViz2
+ros2 run rviz2 rviz2
+Success Indicators ✅
+
+Robot state publisher logs all 9 rover components successfully
+No "file not found" errors for STL meshes
+/robot_description topic active in ros2 topic list
+RViz2 opens and shows complete rover model when properly configured
+All components visible: base chassis, 4 mecanum wheels, LiDAR, camera, battery, motherboard
+
 ## Author
 
 - **Emanuel Gonzalez** - *Project Developer* - [Eman-Gon](https://github.com/Eman-Gon)
