@@ -6,7 +6,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="Base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="Base.stl" scale="0.1 0.1 0.1"/>
       </geometry>
       <material name="gray">
         <color rgba="0.8 0.8 0.8 1.0"/>
@@ -15,7 +15,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="Base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="Base.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </collision>
     <inertial>
@@ -30,13 +30,13 @@
     <visual>
       <origin xyz="0.12 0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="front_left_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="front_left_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0.12 0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="front_left_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="front_left_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </collision>
   </link>
@@ -45,13 +45,13 @@
     <visual>
       <origin xyz="0.12 -0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="front_right_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="front_right_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0.12 -0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="front_right_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="front_right_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </collision>
   </link>
@@ -60,13 +60,13 @@
     <visual>
       <origin xyz="-0.12 0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="back_left_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="back_left_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="-0.12 0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="back_left_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="back_left_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </collision>
   </link>
@@ -75,13 +75,13 @@
     <visual>
       <origin xyz="-0.12 -0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="back_right_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="back_right_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="-0.12 -0.12 -0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="back_right_wheel.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="back_right_wheel.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </collision>
   </link>
@@ -91,7 +91,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.08" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="lidar.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="lidar.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
   </link>
@@ -101,7 +101,7 @@
     <visual>
       <origin xyz="0.15 0.0 0.05" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="camera.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="camera.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
   </link>
@@ -111,7 +111,7 @@
     <visual>
       <origin xyz="-0.08 0.0 0.02" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="battery.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="battery.stl" scale="0.1 0.1 0.1"/>
       </geometry>
     </visual>
   </link>
@@ -119,7 +119,7 @@
  <!-- Motherboard -->
   <link name="motherboard">
     <visual><origin xyz="0.0 0.0 0.04" rpy="0 0 0"/>
-      <geometry><mesh filename="motherboard.stl" scale="0.001 0.001 0.001"/></geometry>
+      <geometry><mesh filename="motherboard.stl" scale="0.1 0.1 0.1"/></geometry>
     </visual>
   </link>
 
