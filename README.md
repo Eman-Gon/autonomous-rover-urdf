@@ -564,15 +564,21 @@ For questions, issues, or suggestions, please open an issue on GitHub.
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Author
+
+## Authors
 
 **Emanuel Gonzalez**  
-Project Developer  
+Project Developer - User Experience & Cross-Platform Implementation  
 GitHub: [Eman-Gon](https://github.com/Eman-Gon)
+
+**Eduardo Gallegos**  
+Project Developer - 3D Modeling & Physics Implementation
 
 ## Acknowledgments
 
-- Cal Poly, San Luis Obispo for academic support
-- GoBilda for hardware platform and components  
-- ROS community for development tools and documentation
-- Open source robotics community
+- **Project Advisor**: Carlos Alvarenga - Cal Poly Department of Computer Engineering
+- **Cal Poly San Luis Obispo** - Senior Project Program and academic support
+- **CPE 416 Autonomous Mobile Robotics** - Course integration and testing
+- **GoBilda** - Hardware platform and robotics components
+- **ROS Community** - Development tools and comprehensive documentation
+- **Open Source Robotics Community** - Foundational tools and collaborative support
